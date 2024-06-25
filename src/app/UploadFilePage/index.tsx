@@ -36,11 +36,11 @@ const UploadFilePage: Component = () => {
                 />
             </Mui.Stack>
 
-            {controller.isModalOpen && controller.selectedImage && (
+            {controller.isModalOpen && controller.clickedFile && (
                 <ModalFilePreview
                     onClose={controller.handleModalClose}
                     open={controller.isModalOpen}
-                    file={controller.selectedImage}
+                    file={controller.clickedFile}
                 />
             )}
 

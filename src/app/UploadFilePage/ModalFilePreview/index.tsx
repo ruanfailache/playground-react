@@ -1,8 +1,7 @@
 import { Close } from "@mui/icons-material";
 import * as Mui from "@mui/material";
 import { FC, PropsWithChildren } from "react";
-
-import SelectedFileImage from "@app/components/SelectedFileImage";
+import SelectedFilePreview from "src/components/SelectedFilePreview";
 
 interface ComponentProps extends PropsWithChildren {
     open: boolean;
@@ -23,7 +22,7 @@ const ModalFilePreview: Component = ({ open, file, onClose }) => (
             </Mui.Toolbar>
         </Mui.AppBar>
         <Mui.DialogContent>
-            {file ? <SelectedFileImage key={file.name} file={file} /> : "No image selected"}
+            {file ? <SelectedFilePreview key={file.name} file={file} /> : "No image selected"}
         </Mui.DialogContent>
     </Mui.Dialog>
 );

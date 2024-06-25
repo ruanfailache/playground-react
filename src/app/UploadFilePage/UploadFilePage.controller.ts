@@ -14,7 +14,7 @@ interface ControllerReturn {
     files: File[];
     isModalOpen: boolean;
     isSnackbarOpen: boolean;
-    selectedImage: File | undefined;
+    clickedFile: File | undefined;
     selectedFileText: string;
     snackbarMessage: string;
     handleFileChange: ChangeEventHandler<HTMLInputElement>;
@@ -81,10 +81,10 @@ const useUploadFilePageController: UploadFilePageController = () => {
     };
 
     return {
-        files: files,
+        files,
+        clickedFile,
         isModalOpen,
         isSnackbarOpen,
-        selectedImage: clickedFile,
         selectedFileText,
         snackbarMessage,
         handleFileChange,

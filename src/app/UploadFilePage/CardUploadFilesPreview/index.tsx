@@ -1,7 +1,6 @@
 import * as Mui from "@mui/material";
 import { FC } from "react";
-
-import SelectedFileImage from "@app/components/SelectedFileImage";
+import SelectedFilePreview from "src/components/SelectedFilePreview";
 
 interface Component
     extends FC<{
@@ -21,7 +20,7 @@ const CardUploadFilesPreview: Component = ({ title, subtitle, files, onFileClick
                 <Mui.ImageList cols={3} gap={16} rowHeight={300}>
                     {files.map((file, index) => (
                         <Mui.ImageListItem key={index}>
-                            <SelectedFileImage key={file.name} file={file} onFileClick={onFileClick} />
+                            <SelectedFilePreview key={file.name} file={file} onFileClick={onFileClick} />
                         </Mui.ImageListItem>
                     ))}
                 </Mui.ImageList>
