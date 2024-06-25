@@ -15,6 +15,7 @@ const SelectedFileImage: Component = ({ file, onFileClick }) => (
         alt={file.name}
         loading="lazy"
         width="100%"
+        height="100%"
     />
 );
 

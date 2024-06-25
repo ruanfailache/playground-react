@@ -18,7 +18,7 @@ const CardUploadFilesPreview: Component = ({ title, subtitle, filesList, onFileC
             {filesList.length === 0 ? (
                 <Mui.Typography>No file uploaded</Mui.Typography>
             ) : (
-                <Mui.ImageList cols={3} gap={16}>
+                <Mui.ImageList cols={3} gap={16} rowHeight={300}>
                     {filesList.map((files, index) => (
                         <Mui.ImageListItem key={index}>
                             {Array.from(files).map((file) => (

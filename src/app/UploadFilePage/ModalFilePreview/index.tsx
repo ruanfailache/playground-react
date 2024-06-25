@@ -1,3 +1,4 @@
+import { Close } from "@mui/icons-material";
 import * as Mui from "@mui/material";
 import { FC, PropsWithChildren } from "react";
 
@@ -12,14 +13,18 @@ interface ComponentProps extends PropsWithChildren {
 interface Component extends FC<ComponentProps> {}
 
 const ModalFilePreview: Component = ({ open, file, onClose }) => (
-    <Mui.Dialog open={open} onClose={onClose} fullScreen>
-        <Mui.DialogTitle>Image preview</Mui.DialogTitle>
+    <Mui.Dialog open={open} onClose={onClose} maxWidth="xl">
+        <Mui.AppBar position="sticky">
+            <Mui.Toolbar>
+                <Mui.Typography flex={1}>Image preview</Mui.Typography>
+                <Mui.IconButton onClick={onClose}>
+                    <Close />
+                </Mui.IconButton>
+            </Mui.Toolbar>
+        </Mui.AppBar>
         <Mui.DialogContent>
             {file ? <SelectedFileImage key={file.name} file={file} /> : "No image selected"}
         </Mui.DialogContent>
-        <Mui.DialogActions>
-            <Mui.Button onClick={onClose}>Close</Mui.Button>
-        </Mui.DialogActions>
     </Mui.Dialog>
 );
 
