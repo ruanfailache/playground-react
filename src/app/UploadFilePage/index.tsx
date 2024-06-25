@@ -31,7 +31,7 @@ const UploadFilePage: Component = () => {
                 <CardUploadFilesPreview
                     title="Uploaded files"
                     subtitle={controller.selectedFileText}
-                    filesList={controller.fileLists}
+                    files={controller.files}
                     onFileClick={controller.handleFileClick}
                 />
             </Mui.Stack>

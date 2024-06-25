@@ -4,7 +4,7 @@ import { FC, PropsWithChildren } from "react";
 
 const theme = createTheme({
     palette: {
-        mode: "dark",
+        // mode: "dark",
         primary: {
             main: purple[500],
         },

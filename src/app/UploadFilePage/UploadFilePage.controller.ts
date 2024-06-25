@@ -11,7 +11,7 @@ const ADD_DOCUMENT = gql`
 `;
 
 interface ControllerReturn {
-    fileLists: FileList[];
+    files: File[];
     isModalOpen: boolean;
     isSnackbarOpen: boolean;
     selectedImage: File | undefined;
@@ -32,29 +32,23 @@ const useUploadFilePageController: UploadFilePageController = () => {
     const [isSnackbarOpen, setIsSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState("");
 
-    const [selectedImage, setSelectedImage] = useState<File>();
-    const [fileLists, setFileLists] = useState<FileList[]>([]);
+    const [files, setFiles] = useState<File[]>([]);
+    const [clickedFile, setClickedFile] = useState<File>();
 
     const [addDocument] = useMutation(ADD_DOCUMENT);
 
     const selectedFileText = useMemo(() => {
-        if (!fileLists) return "No file selected";
-        const filesLength = fileLists.reduce((acc, file) => acc + file.length, 0);
-        return `${filesLength} file(s) selected`;
-    }, [fileLists]);
+        if (!files) return "No file selected";
+        return `${files.length} file(s) selected`;
+    }, [files]);
 
     const handleFileChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         const { files: eventFiles } = event.target;
-        if (eventFiles) {
-            setFileLists((prev) => {
-                if (prev) return [...prev, eventFiles];
-                return [eventFiles];
-            });
-        }
+        if (eventFiles) setFiles((prev) => [...prev, ...eventFiles]);
     };
 
     const handleFileClick = (file: File) => {
-        setSelectedImage(file);
+        setClickedFile(file);
         setIsModalOpen(true);
     };
 
@@ -68,8 +62,8 @@ const useUploadFilePageController: UploadFilePageController = () => {
 
     const handleUpload = async () => {
         const data = new FormData();
-        data.append("file", fileLists[0][0]);
-        data.append("filename", fileLists[0][0].name);
+        data.append("file", files[0]);
+        data.append("filename", files[0].name);
         addDocument({
             variables: {
                 file: data,
@@ -87,10 +81,10 @@ const useUploadFilePageController: UploadFilePageController = () => {
     };
 
     return {
-        fileLists,
+        files: files,
         isModalOpen,
         isSnackbarOpen,
-        selectedImage,
+        selectedImage: clickedFile,
         selectedFileText,
         snackbarMessage,
         handleFileChange,
